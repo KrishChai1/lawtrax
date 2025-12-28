@@ -248,18 +248,37 @@ CONTACT:
 PLATFORM_GUIDELINES = {
     "LinkedIn": {
         "max_chars": 3000,
-        "hashtags": 3,
-        "tone": "Professional, thought leadership focused",
-        "format": "Long-form posts, articles, carousel documents",
+        "hashtags": 5,
+        "tone": "Professional, thought leadership focused, storytelling",
+        "format": "Long-form posts, carousel documents, polls, articles",
         "best_practices": [
-            "Start with a hook in the first 2 lines",
-            "Use line breaks for readability",
-            "Include a clear call-to-action",
-            "Tag relevant people/companies",
-            "Post during business hours (Tue-Thu optimal)",
-            "Use 3-5 relevant hashtags at the end"
+            "Start with a HOOK - first line must stop the scroll (use pattern interrupts, bold claims, or curiosity gaps)",
+            "One sentence per line - creates white space and readability",
+            "Use line breaks after EVERY sentence for mobile readability",
+            "Keep paragraphs to 1-2 lines maximum",
+            "Include a 'pattern interrupt' halfway through (→, •, ↓, or emoji)",
+            "Tell a story or share a personal insight - LinkedIn rewards authenticity",
+            "End with a question or call-to-engagement to boost comments",
+            "Add 3-5 relevant hashtags at the VERY END (not mixed in)",
+            "Use 'I' statements and first-person narrative",
+            "Best posting times: Tue-Thu, 8-10am or 12-1pm user's timezone",
+            "Optimal length: 1,200-1,500 characters for maximum engagement",
+            "NO external links in post body (kills reach) - put in comments",
+            "Use emojis sparingly (1-3 max) for visual breaks"
         ],
-        "content_types": ["Thought leadership", "Industry insights", "Case studies", "Company updates", "Employee spotlights", "How-to guides"]
+        "content_types": ["Thought leadership", "Industry insights", "Case studies", "Company updates", "Employee spotlights", "How-to guides", "Hot takes", "Lessons learned", "Behind-the-scenes"],
+        "viral_hooks": [
+            "I spent [X years/hours] doing [thing]. Here's what I learned:",
+            "Stop doing [common practice]. Do this instead:",
+            "[Controversial opinion]. Here's why:",
+            "Most [persona] get this wrong about [topic].",
+            "The biggest mistake I see [persona] make:",
+            "[Number] [things] that will [benefit] in [timeframe]:",
+            "Unpopular opinion: [statement]",
+            "I was wrong about [thing]. Here's the truth:",
+            "This changed everything for our [clients/business]:",
+            "[Persona], you need to hear this:"
+        ]
     },
     "Instagram": {
         "max_chars": 2200,
@@ -338,18 +357,72 @@ PLATFORM_GUIDELINES = {
     }
 }
 
-# Content types and templates
+# Content types and templates - Marketing focused for LawTrax
 CONTENT_TYPES = {
-    "Educational Post": "Create informative content that educates the audience about immigration processes, software benefits, or industry trends",
+    "Marketing - Product Launch": "Announce new features, updates, or capabilities to generate excitement and leads",
+    "Marketing - Lead Generation": "Create compelling content designed to capture leads and drive demo requests",
+    "Marketing - Brand Awareness": "Build recognition and trust for LawTrax in the immigration law market",
+    "Marketing - Competitive Positioning": "Highlight advantages over competitors like INSZoom, Docketwise, LawLogix",
+    "Marketing - Case Study/ROI": "Share client success stories with specific metrics (30%+ revenue increase)",
+    "Marketing - Demo/Trial Promotion": "Drive sign-ups for demos and free trials",
+    "Educational Post": "Create informative content about immigration processes and software benefits",
     "Success Story": "Share client success stories and testimonials that demonstrate value",
-    "Product Feature Spotlight": "Highlight specific features and their benefits",
-    "Industry News Commentary": "Provide expert commentary on immigration law updates",
+    "Product Feature Spotlight": "Highlight specific features like real-time reporting, PDF generation, API access",
+    "Industry News Commentary": "Provide expert commentary on USCIS updates, immigration law changes",
     "Tips & Best Practices": "Share actionable tips for immigration professionals",
     "Behind-the-Scenes": "Show company culture, team, and development process",
-    "Comparison Post": "Compare solutions or approaches in the market",
-    "FAQ Content": "Address common questions and concerns",
+    "Comparison Post": "Compare LawTrax vs competitors (INSZoom, Docketwise, CampLegal)",
+    "FAQ Content": "Address common questions about immigration case management software",
     "Announcement": "Share company news, updates, or launches",
-    "Engagement Post": "Create interactive content to boost engagement"
+    "Engagement Post": "Create interactive content to boost engagement",
+    "Thought Leadership": "Position LawTrax as industry experts in immigration technology",
+    "Pain Point Solution": "Address specific challenges law firms face and how LawTrax solves them"
+}
+
+# Target Personas for Immigration Law Marketing
+TARGET_PERSONAS = {
+    "Managing Partner - Large Law Firm": {
+        "description": "Decision maker at firms with 50+ attorneys, focuses on ROI, scalability, enterprise features",
+        "pain_points": ["Scalability concerns", "Integration with existing systems", "Compliance requirements", "Staff productivity"],
+        "motivators": ["Revenue growth", "Competitive advantage", "Risk mitigation", "Operational efficiency"],
+        "tone": "Executive, data-driven, ROI-focused",
+        "content_focus": "Enterprise features, security, compliance, client success metrics"
+    },
+    "Immigration Practice Lead": {
+        "description": "Heads immigration department, concerned with team efficiency and case outcomes",
+        "pain_points": ["Case tracking complexity", "Document management chaos", "Deadline management", "Team coordination"],
+        "motivators": ["Streamlined workflows", "Better client service", "Reduced errors", "Team productivity"],
+        "tone": "Professional, solution-oriented, practical",
+        "content_focus": "Workflow automation, case management, reporting capabilities"
+    },
+    "Solo Immigration Attorney": {
+        "description": "Independent practitioner handling all aspects, needs affordable all-in-one solution",
+        "pain_points": ["Limited time", "Wearing multiple hats", "Budget constraints", "Keeping up with forms"],
+        "motivators": ["Time savings", "Affordable pricing", "Easy to use", "All-in-one solution"],
+        "tone": "Relatable, practical, cost-conscious",
+        "content_focus": "Ease of use, time savings, affordable pricing, USCIS form automation"
+    },
+    "Paralegal/Legal Assistant": {
+        "description": "Day-to-day user handling case preparation, document collection, client communication",
+        "pain_points": ["Manual data entry", "Chasing documents", "Status update requests", "Form errors"],
+        "motivators": ["Automation", "Client portal", "Document management", "Error reduction"],
+        "tone": "Practical, feature-focused, user-friendly",
+        "content_focus": "Daily workflow features, client portal, document management, automation"
+    },
+    "Corporate Immigration Manager": {
+        "description": "In-house immigration lead at corporations managing employee visas",
+        "pain_points": ["Vendor management", "Compliance tracking", "Reporting to leadership", "Employee experience"],
+        "motivators": ["Visibility", "Compliance", "Employee satisfaction", "Cost control"],
+        "tone": "Corporate, compliance-focused, metrics-driven",
+        "content_focus": "Employer portal, reporting, compliance tracking, API integrations"
+    },
+    "Law Firm IT/Operations": {
+        "description": "Technical decision maker concerned with security, integrations, and implementation",
+        "pain_points": ["Security concerns", "Integration complexity", "Data migration", "User adoption"],
+        "motivators": ["Security certifications", "Easy integration", "Reliable uptime", "Support quality"],
+        "tone": "Technical, security-focused, detail-oriented",
+        "content_focus": "Security features, API capabilities, cloud infrastructure, compliance certifications"
+    }
 }
 
 def get_claude_response(prompt, api_key):
@@ -951,7 +1024,24 @@ with tab0:
 # Tab 1: Social Media Content
 with tab1:
     st.markdown("## 📱 Social Media Content Generator")
-    st.markdown(f"Creating content for **{company_display_name}**")
+    st.markdown(f"Creating **marketing content** for **{company_display_name}** to reach immigration law professionals")
+    
+    # Marketing Goal Selection
+    st.markdown("### 🎯 Marketing Objective")
+    marketing_goal = st.selectbox(
+        "What's your primary goal?",
+        [
+            "Generate Leads & Demo Requests",
+            "Build Brand Awareness",
+            "Showcase Product Features",
+            "Share Client Success Stories",
+            "Establish Thought Leadership",
+            "Drive Website Traffic",
+            "Promote Special Offers/Trials",
+            "Compete Against Alternatives"
+        ],
+        help="Select your primary marketing objective for this content"
+    )
     
     col1, col2 = st.columns(2)
     
@@ -967,173 +1057,795 @@ with tab1:
             list(CONTENT_TYPES.keys()),
             help="Select the type of content to create"
         )
+        st.caption(f"💡 {CONTENT_TYPES[content_type]}")
         
         topic = st.text_input(
             "Topic/Theme",
-            placeholder="e.g., Benefits of cloud-based case management",
+            placeholder="e.g., How LawTrax reduces H-1B processing time by 50%",
             help="What should the post be about?"
         )
     
     with col2:
-        target_audience = st.text_input(
-            "Target Audience",
-            value="Immigration attorneys, law firm partners, and legal operations managers",
-            help="Who is this content for?"
+        # Persona Selection
+        target_persona = st.selectbox(
+            "🎯 Target Persona",
+            list(TARGET_PERSONAS.keys()),
+            help="Select who you're targeting with this content"
         )
+        
+        persona_info = TARGET_PERSONAS[target_persona]
+        st.markdown(f"""
+        <div style="background: #f0f4f8; padding: 1rem; border-radius: 8px; font-size: 0.85rem;">
+            <strong>Persona Profile:</strong><br>
+            {persona_info['description']}<br><br>
+            <strong>Key Pain Points:</strong> {', '.join(persona_info['pain_points'][:2])}<br>
+            <strong>Recommended Tone:</strong> {persona_info['tone']}
+        </div>
+        """, unsafe_allow_html=True)
         
         tone = st.selectbox(
             "Tone",
-            ["Professional", "Conversational", "Educational", "Inspiring", "Urgent", "Friendly", "Authoritative"],
+            ["Professional & Authoritative", "Conversational & Relatable", "Educational & Helpful", 
+             "Urgent & Action-Oriented", "Inspiring & Visionary", "Data-Driven & ROI-Focused",
+             "Friendly & Approachable", "Technical & Detailed"],
             help="Select the desired tone"
+        )
+    
+    # Additional targeting options
+    st.markdown("### 📝 Content Details")
+    detail_col1, detail_col2 = st.columns(2)
+    
+    with detail_col1:
+        include_cta = st.selectbox(
+            "Call-to-Action Type",
+            [
+                "Book a Demo",
+                "Start Free Trial",
+                "Learn More (Website)",
+                "Download Resource",
+                "Contact Sales",
+                "Watch Video Demo",
+                "Read Case Study",
+                "Get Pricing",
+                "Join Webinar",
+                "Comment Below (Engagement)",
+                "No CTA (Awareness Only)"
+            ]
+        )
+        
+        # LinkedIn-specific hook selector
+        if platform == "LinkedIn":
+            hook_style = st.selectbox(
+                "🎣 Hook Style",
+                [
+                    "Auto-Generate Best Hook",
+                    "Lessons Learned: 'I spent X years doing Y. Here's what I learned:'",
+                    "Contrarian: 'Stop doing X. Do this instead:'",
+                    "Hot Take: '[Unpopular opinion]. Here's why:'",
+                    "Mistake Alert: 'The biggest mistake I see [persona] make:'",
+                    "Listicle: '[Number] things that will [benefit]:'",
+                    "Story: 'I was wrong about X. Here's the truth:'",
+                    "Direct Address: '[Persona], you need to hear this:'",
+                    "Curiosity Gap: 'Most people don't know this about [topic]...'",
+                    "Results: 'This changed everything for our clients:'"
+                ],
+                help="Select a proven hook format for higher engagement"
+            )
+        else:
+            hook_style = "Auto-Generate Best Hook"
+        
+        competitor_mention = st.multiselect(
+            "Competitors to Position Against (Optional)",
+            ["INSZoom", "Docketwise", "LawLogix Edge", "CampLegal", "Clio", "MyCase", "Generic Spreadsheets"],
+            help="Select if you want to subtly position against competitors"
+        )
+    
+    with detail_col2:
+        key_features = st.multiselect(
+            "Key Features to Highlight",
+            [
+                "Real-Time Reporting (No 24hr Delays)",
+                "Zero Additional API Costs",
+                "99.9% Uptime Guarantee",
+                "Built-in USCIS/DoL PDF Generator",
+                "Secure Client Portal",
+                "Complete Audit Trail",
+                "QuickBooks Integration",
+                "Outlook Calendar Sync",
+                "Lead Management CRM",
+                "Document Management System",
+                "Automated Notifications",
+                "Custom Workflows",
+                "30%+ Revenue Increase Results"
+            ],
+            help="Select features to emphasize in the content"
         )
         
         additional_context = st.text_area(
             "Additional Context (Optional)",
-            placeholder="Any specific points to include, avoid, or emphasize...",
-            height=100
+            placeholder="Any specific points, current promotions, or requirements...",
+            height=80
         )
     
     # Platform-specific info
     guidelines = PLATFORM_GUIDELINES.get(platform, {})
-    st.markdown(f"""
-    <div class="info-box">
-        <strong>📌 {platform} Guidelines:</strong><br>
-        • Max Characters: {guidelines.get('max_chars', 'N/A')}<br>
-        • Recommended Hashtags: {guidelines.get('hashtags', 'N/A')}<br>
-        • Tone: {guidelines.get('tone', 'N/A')}<br>
-        • Best Formats: {guidelines.get('format', 'N/A')}
-    </div>
-    """, unsafe_allow_html=True)
     
-    if st.button("✨ Generate Social Media Content", type="primary", use_container_width=True):
+    # Special LinkedIn tips section
+    if platform == "LinkedIn":
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #0077B5 0%, #00A0DC 100%); 
+                    padding: 1.5rem; border-radius: 12px; color: white; margin-bottom: 1rem;">
+            <h4 style="margin: 0 0 1rem 0;">🔥 LinkedIn Viral Post Formula</h4>
+            <p style="margin: 0; font-size: 0.95rem; line-height: 1.6;">
+                <strong>Hook Examples That Work:</strong><br>
+                • "I've helped 50+ immigration firms. Here's what the top 1% do differently:"<br>
+                • "Stop using spreadsheets for case management. Here's why:"<br>
+                • "Most immigration attorneys waste 10+ hours/week on admin. The solution?"<br>
+                • "Unpopular opinion: Your case management software is killing your revenue."<br><br>
+                <strong>Format Rules:</strong> One sentence per line → Blank lines between → Hook first → Question at end → Hashtags last
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+    else:
+        st.markdown(f"""
+        <div class="info-box">
+            <strong>📌 {platform} Guidelines:</strong><br>
+            • Max Characters: {guidelines.get('max_chars', 'N/A')} | Hashtags: {guidelines.get('hashtags', 'N/A')}<br>
+            • Tone: {guidelines.get('tone', 'N/A')}<br>
+            • Best Formats: {guidelines.get('format', 'N/A')}
+        </div>
+        """, unsafe_allow_html=True)
+    
+    if st.button("✨ Generate Marketing Content", type="primary", use_container_width=True):
         if not st.session_state.api_key:
             st.error("⚠️ Please enter your Claude API key in the sidebar")
         elif not topic:
             st.error("⚠️ Please enter a topic")
         else:
-            with st.spinner(f"🎨 Creating {platform} content..."):
-                prompt = build_content_prompt(
-                    company_info, platform, content_type, topic,
-                    additional_context, tone, target_audience
-                )
-                result = get_claude_response(prompt, st.session_state.api_key)
+            with st.spinner(f"🎨 Creating {platform} marketing content..."):
+                # Build enhanced marketing prompt
+                persona_details = TARGET_PERSONAS[target_persona]
+                
+                # Special LinkedIn formatting for viral posts
+                if platform == "LinkedIn":
+                    enhanced_prompt = f"""You are a TOP LinkedIn content creator and B2B marketing expert who writes viral posts 
+that get 100K+ impressions. You understand the LinkedIn algorithm perfectly and write posts that STOP THE SCROLL.
+
+COMPANY INFORMATION:
+{company_info}
+
+MARKETING OBJECTIVE: {marketing_goal}
+
+TARGET PERSONA: {target_persona}
+- Description: {persona_details['description']}
+- Pain Points: {', '.join(persona_details['pain_points'])}
+- Motivators: {', '.join(persona_details['motivators'])}
+
+CONTENT TYPE: {content_type}
+TOPIC: {topic}
+DESIRED TONE: {tone}
+CALL-TO-ACTION: {include_cta}
+HOOK STYLE PREFERENCE: {hook_style if platform == "LinkedIn" else "N/A"}
+KEY FEATURES TO HIGHLIGHT: {', '.join(key_features) if key_features else 'General platform benefits'}
+COMPETITORS TO POSITION AGAINST: {', '.join(competitor_mention) if competitor_mention else 'None'}
+ADDITIONAL CONTEXT: {additional_context if additional_context else 'None'}
+
+═══════════════════════════════════════════════════════════
+CRITICAL LINKEDIN VIRAL POST RULES (FOLLOW EXACTLY):
+═══════════════════════════════════════════════════════════
+
+1. **HOOK (First Line)** - This is EVERYTHING. Must create curiosity gap or pattern interrupt.
+   Examples of hooks that work:
+   - "I've helped 50+ immigration law firms. Here's what the top 1% do differently:"
+   - "Stop using spreadsheets for case management. Here's why:"
+   - "Most immigration attorneys waste 10+ hours/week on admin. The solution?"
+   - "Unpopular opinion: Your case management software is killing your revenue."
+   - "I was skeptical about immigration software. Then I saw a firm increase revenue 30%."
+
+2. **FORMAT** - This is non-negotiable:
+   - ONE sentence per line
+   - Blank line between EVERY sentence
+   - Short sentences (under 15 words each)
+   - NO long paragraphs ever
+   - Use → or • for lists
+   - Maximum 1,200-1,500 characters
+
+3. **STRUCTURE**:
+   Line 1: HOOK (curiosity/controversy/bold claim)
+   Line 2-3: Expand the hook / set up the problem
+   Line 4-8: The insight/story/value (one point per line)
+   Line 9-10: The solution/revelation
+   Line 11: Call-to-action or question
+   Line 12: Hashtags (3-5 at very end)
+
+4. **ENGAGEMENT TRIGGERS**:
+   - End with a question that's easy to answer
+   - Use "you" frequently to speak directly to reader
+   - Include a specific number or metric
+   - Share a contrarian or surprising insight
+
+5. **WHAT NOT TO DO**:
+   - No external links in post body (kills reach)
+   - No more than 2-3 emojis total
+   - No corporate jargon or buzzwords
+   - No long paragraphs
+   - No hashtags mixed into the text
+
+═══════════════════════════════════════════════════════════
+
+TASK: Write a VIRAL LinkedIn post about "{topic}" targeting {target_persona}.
+
+OUTPUT FORMAT (Follow this EXACTLY):
+
+---
+**📱 LINKEDIN POST (Copy & Paste Ready):**
+
+[Write the complete post here with PERFECT formatting:
+- Hook on line 1
+- One sentence per line
+- Blank lines between sentences
+- Question or CTA at end
+- Hashtags at very bottom]
+
+---
+
+**🎯 WHY THIS POST WILL PERFORM:**
+[2-3 bullet points on why this hooks the target persona]
+
+**⏰ BEST TIME TO POST:**
+[Specific day and time recommendation]
+
+**💬 ENGAGEMENT STRATEGY:**
+[How to respond to comments to boost reach]
+
+**🔗 COMMENT CTA:**
+[What to put in the first comment - usually the link]
+
+**📊 EXPECTED PERFORMANCE:**
+[Realistic engagement expectations]
+
+---
+
+Remember: The post MUST look like it was written by a human thought leader, NOT a company. 
+First-person, authentic, valuable, and formatted for MOBILE READABILITY."""
+
+                else:
+                    # Standard prompt for other platforms
+                    enhanced_prompt = f"""You are an expert B2B SaaS marketing strategist specializing in legal technology marketing, 
+specifically immigration case management software. You understand the immigration law market deeply.
+
+COMPANY INFORMATION:
+{company_info}
+
+MARKETING OBJECTIVE: {marketing_goal}
+
+TARGET PERSONA: {target_persona}
+- Description: {persona_details['description']}
+- Pain Points: {', '.join(persona_details['pain_points'])}
+- Motivators: {', '.join(persona_details['motivators'])}
+- Preferred Tone: {persona_details['tone']}
+- Content Focus: {persona_details['content_focus']}
+
+PLATFORM: {platform}
+CONTENT TYPE: {content_type}
+TOPIC: {topic}
+DESIRED TONE: {tone}
+
+PLATFORM SPECIFICATIONS:
+- Maximum Characters: {guidelines['max_chars']}
+- Recommended Hashtags: {guidelines['hashtags']}
+- Platform Tone: {guidelines['tone']}
+- Format: {guidelines['format']}
+
+CALL-TO-ACTION: {include_cta}
+KEY FEATURES TO HIGHLIGHT: {', '.join(key_features) if key_features else 'General platform benefits'}
+COMPETITORS TO POSITION AGAINST: {', '.join(competitor_mention) if competitor_mention else 'None - focus on LawTrax strengths'}
+
+ADDITIONAL CONTEXT: {additional_context if additional_context else 'None'}
+
+BEST PRACTICES FOR {platform.upper()}:
+{chr(10).join(['- ' + bp for bp in guidelines['best_practices']])}
+
+TASK:
+Create compelling marketing content for {platform} that:
+1. Speaks directly to the {target_persona} persona's pain points and motivators
+2. Achieves the marketing objective: {marketing_goal}
+3. Highlights LawTrax's unique value propositions
+4. Includes a strong hook that stops the scroll
+5. Builds credibility and trust
+6. Includes the specified call-to-action: {include_cta}
+7. Is optimized for {platform}'s algorithm and best practices
+8. Uses social proof and specific metrics where possible (e.g., "30% revenue increase", "99.9% uptime")
+
+OUTPUT FORMAT:
+Provide ready-to-post content with:
+
+**📱 MAIN CONTENT:**
+[The actual post text, fully formatted for {platform}]
+
+**#️⃣ HASHTAGS:**
+[{guidelines['hashtags']} relevant hashtags]
+
+**🎯 TARGETING NOTES:**
+[Why this content will resonate with {target_persona}]
+
+**📊 POSTING STRATEGY:**
+- Best time to post
+- Engagement tips
+- Follow-up content ideas
+
+**🖼️ VISUAL SUGGESTION:**
+[Description of ideal accompanying image/video/graphic]
+
+**📈 SUCCESS METRICS:**
+[What metrics to track for this post]
+
+Make the content compelling, authentic, and designed to generate leads for LawTrax."""
+
+                result = get_claude_response(enhanced_prompt, st.session_state.api_key)
                 
                 if not result.startswith("ERROR"):
                     st.session_state.generated_content.append({
-                        "type": "Social Media",
+                        "type": "Social Media Marketing",
                         "platform": platform,
                         "topic": topic,
+                        "persona": target_persona,
+                        "goal": marketing_goal,
                         "content": result,
                         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")
                     })
                     
-                    st.markdown('<div class="success-banner">✅ Content Generated Successfully!</div>', unsafe_allow_html=True)
-                    st.markdown("### 📝 Generated Content")
+                    st.markdown('<div class="success-banner">✅ Marketing Content Generated!</div>', unsafe_allow_html=True)
+                    st.markdown("### 📝 Generated Marketing Content")
                     st.markdown(result)
                     
                     # Copy button
                     st.download_button(
                         label="📥 Download Content",
                         data=result,
-                        file_name=f"{platform.lower()}_{content_type.lower().replace(' ', '_')}_{datetime.now().strftime('%Y%m%d_%H%M')}.txt",
+                        file_name=f"{platform.lower()}_marketing_{datetime.now().strftime('%Y%m%d_%H%M')}.txt",
                         mime="text/plain"
                     )
                 else:
                     st.error(result)
 
-# Tab 2: Video Scripts
+# Tab 2: Video Scripts & Marketing Videos
 with tab2:
-    st.markdown("## 🎬 Video Script Generator")
-    st.markdown(f"Creating video content for **{company_display_name}**")
+    st.markdown("## 🎬 Video Marketing Generator")
+    st.markdown(f"Creating **video marketing content** for **{company_display_name}** to drive leads and conversions")
+    
+    # Video Marketing Goal
+    st.markdown("### 🎯 Video Marketing Objective")
+    video_goal = st.selectbox(
+        "What's your video goal?",
+        [
+            "Generate Demo Requests",
+            "Explain Product Benefits",
+            "Share Client Success Story",
+            "Compare Against Competitors",
+            "Address Common Objections",
+            "Showcase Specific Feature",
+            "Build Brand Awareness",
+            "Educate on Immigration Tech",
+            "Promote Webinar/Event",
+            "Retarget Website Visitors"
+        ],
+        key="video_goal"
+    )
     
     col1, col2 = st.columns(2)
     
     with col1:
         video_platform = st.selectbox(
             "Platform",
-            ["TikTok", "YouTube", "Instagram Reels", "LinkedIn Video", "Facebook Video"],
+            ["TikTok", "YouTube", "Instagram Reels", "LinkedIn Video", "Facebook Video", "YouTube Shorts", "Website/Landing Page"],
             key="video_platform"
         )
         
         video_type = st.selectbox(
             "Video Type",
             [
-                "Product Demo",
-                "Educational/How-To",
-                "Testimonial/Case Study",
-                "Industry Tips",
-                "Behind-the-Scenes",
-                "FAQ/Q&A",
-                "Announcement/News",
-                "Comparison",
-                "Day-in-the-Life",
-                "Trending Challenge Adaptation"
+                "🎯 Marketing - Product Demo",
+                "🎯 Marketing - Explainer Video",
+                "🎯 Marketing - Customer Testimonial",
+                "🎯 Marketing - Problem/Solution",
+                "🎯 Marketing - Competitor Comparison",
+                "🎯 Marketing - Feature Highlight",
+                "🎯 Marketing - ROI/Results Showcase",
+                "🎯 Marketing - Objection Handler",
+                "📚 Educational - How-To Tutorial",
+                "📚 Educational - Industry Tips",
+                "📚 Educational - USCIS Updates",
+                "🎭 Engagement - Day-in-the-Life",
+                "🎭 Engagement - Behind-the-Scenes",
+                "🎭 Engagement - Team Introduction",
+                "🎭 Engagement - FAQ Response",
+                "🎭 Engagement - Trending Challenge",
+                "📢 Announcement - New Feature",
+                "📢 Announcement - Company News",
+                "📢 Announcement - Event Promotion"
             ]
         )
         
         video_topic = st.text_input(
             "Video Topic",
-            placeholder="e.g., 5 ways to streamline H-1B processing",
+            placeholder="e.g., Why immigration firms are switching from spreadsheets to LawTrax",
             key="video_topic"
+        )
+        
+        # Target Persona for Video
+        video_persona = st.selectbox(
+            "🎯 Target Persona",
+            list(TARGET_PERSONAS.keys()),
+            key="video_persona"
         )
     
     with col2:
         duration = st.selectbox(
             "Target Duration",
-            ["15 seconds (TikTok/Reels)", "30 seconds", "60 seconds", "2-3 minutes", "5-10 minutes (YouTube)", "10+ minutes (Deep Dive)"]
+            [
+                "15 seconds (TikTok/Reels Hook)",
+                "30 seconds (Social Ad)",
+                "60 seconds (Explainer)",
+                "90 seconds (Product Demo)",
+                "2-3 minutes (Deep Dive)",
+                "5-7 minutes (Tutorial)",
+                "10+ minutes (Comprehensive)"
+            ]
         )
         
         video_style = st.selectbox(
             "Style",
-            ["Talking Head", "Screen Recording", "Animation", "Mixed Media", "Documentary", "Vlog"]
+            [
+                "Talking Head (Founder/Expert)",
+                "Screen Recording + Voiceover",
+                "Animated Explainer",
+                "Customer Interview",
+                "Problem/Solution Drama",
+                "Side-by-Side Comparison",
+                "Text Overlay + B-Roll",
+                "Mixed Media",
+                "Documentary Style"
+            ]
+        )
+        
+        video_cta = st.selectbox(
+            "Call-to-Action",
+            [
+                "Book a Free Demo",
+                "Start Your Free Trial",
+                "Visit lawtrax.com",
+                "Link in Bio",
+                "Comment for More Info",
+                "Download Our Guide",
+                "Call 972-200-1030",
+                "See Pricing"
+            ],
+            key="video_cta"
+        )
+        
+        key_message = st.text_input(
+            "Key Message/Hook",
+            placeholder="e.g., Stop losing clients to paperwork chaos",
+            help="The one thing you want viewers to remember"
+        )
+    
+    # Additional video options
+    st.markdown("### 🎥 Video Details")
+    vid_detail_col1, vid_detail_col2 = st.columns(2)
+    
+    with vid_detail_col1:
+        pain_points_video = st.multiselect(
+            "Pain Points to Address",
+            [
+                "Manual data entry taking too long",
+                "Missing deadlines",
+                "Lost documents",
+                "No real-time case visibility",
+                "Expensive software with hidden fees",
+                "Complex, hard-to-use systems",
+                "Poor client communication",
+                "Compliance concerns",
+                "Can't scale with growth",
+                "24-hour reporting delays"
+            ],
+            key="pain_points_video"
+        )
+        
+        proof_points = st.multiselect(
+            "Proof Points to Include",
+            [
+                "30%+ revenue increase",
+                "99.9% uptime guarantee",
+                "Zero additional API costs",
+                "Real-time reporting",
+                "25+ years industry experience",
+                "Google Cloud security",
+                "SOC 2 Type II compliant",
+                "Trusted by leading firms"
+            ],
+            key="proof_points"
+        )
+    
+    with vid_detail_col2:
+        competitor_video = st.multiselect(
+            "Competitors to Address (Subtle)",
+            ["INSZoom", "Docketwise", "LawLogix", "CampLegal", "Spreadsheets/Manual", "Other Legacy Systems"],
+            key="competitor_video"
         )
         
         video_context = st.text_area(
             "Additional Requirements",
-            placeholder="Specific points, target audience, or special requirements...",
-            height=100,
+            placeholder="Specific scenes, testimonial quotes, features to show...",
+            height=80,
             key="video_context"
         )
     
-    if st.button("🎥 Generate Video Script", type="primary", use_container_width=True):
+    # Generate buttons
+    st.markdown("---")
+    gen_col1, gen_col2 = st.columns(2)
+    
+    with gen_col1:
+        generate_script = st.button("📝 Generate Video Script", type="primary", use_container_width=True)
+    
+    with gen_col2:
+        generate_full_video = st.button("🎬 Generate Full Video Package", type="secondary", use_container_width=True)
+    
+    if generate_script or generate_full_video:
         if not st.session_state.api_key:
             st.error("⚠️ Please enter your Claude API key in the sidebar")
         elif not video_topic:
             st.error("⚠️ Please enter a video topic")
         else:
-            with st.spinner("🎬 Creating video script..."):
-                prompt = build_video_script_prompt(
-                    company_info, video_platform, video_type,
-                    video_topic, duration, video_context
-                )
-                result = get_claude_response(prompt, st.session_state.api_key)
-                
-                if not result.startswith("ERROR"):
-                    st.session_state.generated_content.append({
-                        "type": "Video Script",
-                        "platform": video_platform,
-                        "topic": video_topic,
-                        "content": result,
-                        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")
-                    })
+            persona_info = TARGET_PERSONAS[video_persona]
+            
+            if generate_full_video:
+                with st.spinner("🎬 Creating comprehensive video marketing package..."):
+                    full_video_prompt = f"""You are an expert video marketing strategist and producer specializing in B2B SaaS marketing 
+for the legal technology industry, specifically immigration case management software.
+
+COMPANY INFORMATION:
+{company_info}
+
+VIDEO MARKETING OBJECTIVE: {video_goal}
+
+TARGET PERSONA: {video_persona}
+- Description: {persona_info['description']}
+- Pain Points: {', '.join(persona_info['pain_points'])}
+- Motivators: {', '.join(persona_info['motivators'])}
+
+PLATFORM: {video_platform}
+VIDEO TYPE: {video_type}
+TOPIC: {video_topic}
+TARGET DURATION: {duration}
+STYLE: {video_style}
+CALL-TO-ACTION: {video_cta}
+KEY MESSAGE/HOOK: {key_message if key_message else 'Create a compelling hook'}
+
+PAIN POINTS TO ADDRESS: {', '.join(pain_points_video) if pain_points_video else 'General industry pain points'}
+PROOF POINTS: {', '.join(proof_points) if proof_points else 'Use available metrics'}
+COMPETITORS TO SUBTLY ADDRESS: {', '.join(competitor_video) if competitor_video else 'Focus on LawTrax strengths'}
+
+ADDITIONAL CONTEXT: {video_context if video_context else 'None'}
+
+TASK:
+Create a COMPREHENSIVE VIDEO MARKETING PACKAGE that includes everything needed to produce and publish this video.
+
+OUTPUT - COMPLETE VIDEO PACKAGE:
+
+## 🎬 VIDEO SCRIPT
+
+### HOOK (First 3 Seconds)
+[Attention-grabbing opening that stops the scroll - critical for {video_platform}]
+
+### OPENING (Seconds 4-10)
+[Problem statement that resonates with {video_persona}]
+
+### MAIN CONTENT
+[Full script with timestamps, speaker directions, and visual cues]
+- Include [VISUAL: description] cues for B-roll
+- Include [TEXT ON SCREEN: text] for graphics
+- Include [TRANSITION: type] for editing
+
+### CALL-TO-ACTION (Final 5-10 seconds)
+[Strong CTA: {video_cta}]
+
+---
+
+## 🎨 VISUAL STORYBOARD
+
+| Timestamp | Visual | Audio/Voiceover | Text Overlay |
+|-----------|--------|-----------------|--------------|
+[Complete scene-by-scene breakdown]
+
+---
+
+## 📱 PLATFORM-SPECIFIC VERSIONS
+
+### {video_platform} Version
+- Optimized length and format
+- Platform-specific hooks
+- Hashtags and description
+
+### Alternative Cuts
+- 15-second teaser version
+- 30-second ad version
+- Full version
+
+---
+
+## 🖼️ THUMBNAIL OPTIONS
+[3 thumbnail concepts with descriptions]
+
+---
+
+## ✍️ CAPTIONS & DESCRIPTIONS
+
+### Video Title (SEO Optimized)
+[Title]
+
+### Video Description
+[Full description with keywords, timestamps, links]
+
+### Hashtags
+[Platform-appropriate hashtags]
+
+---
+
+## 🎵 AUDIO RECOMMENDATIONS
+- Background music style
+- Sound effects
+- Voiceover tone and pacing
+
+---
+
+## 📊 POSTING STRATEGY
+- Best posting time for {video_platform}
+- Engagement strategy
+- Cross-posting recommendations
+- A/B testing suggestions
+
+---
+
+## 📈 SUCCESS METRICS
+- Views target
+- Engagement rate goal
+- Click-through expectations
+- Conversion tracking
+
+---
+
+## 🔄 REPURPOSING IDEAS
+- Blog post version
+- Social media snippets
+- Email content
+- Podcast topic
+
+Make this video package comprehensive, professional, and ready for production."""
+
+                    result = get_claude_response(full_video_prompt, st.session_state.api_key)
                     
-                    st.markdown('<div class="success-banner">✅ Video Script Generated!</div>', unsafe_allow_html=True)
-                    st.markdown("### 📝 Generated Script")
-                    st.markdown(result)
+                    if not result.startswith("ERROR"):
+                        st.session_state.generated_content.append({
+                            "type": "Full Video Package",
+                            "platform": video_platform,
+                            "topic": video_topic,
+                            "persona": video_persona,
+                            "goal": video_goal,
+                            "content": result,
+                            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")
+                        })
+                        
+                        st.markdown('<div class="success-banner">✅ Complete Video Package Generated!</div>', unsafe_allow_html=True)
+                        st.markdown("### 🎬 Your Video Marketing Package")
+                        st.markdown(result)
+                        
+                        st.download_button(
+                            label="📥 Download Full Video Package",
+                            data=result,
+                            file_name=f"video_package_{video_platform.lower()}_{datetime.now().strftime('%Y%m%d_%H%M')}.md",
+                            mime="text/markdown"
+                        )
+                    else:
+                        st.error(result)
+            
+            else:  # generate_script only
+                with st.spinner("📝 Creating video script..."):
+                    script_prompt = f"""You are an expert video scriptwriter for B2B SaaS marketing in the legal technology space.
+
+COMPANY: LawTrax - Immigration Case Management Software
+{company_info}
+
+VIDEO DETAILS:
+- Platform: {video_platform}
+- Type: {video_type}
+- Topic: {video_topic}
+- Duration: {duration}
+- Style: {video_style}
+- Target Persona: {video_persona} - {persona_info['description']}
+- CTA: {video_cta}
+- Key Message: {key_message if key_message else 'Create compelling hook'}
+
+Pain Points: {', '.join(pain_points_video) if pain_points_video else 'Industry standard'}
+Proof Points: {', '.join(proof_points) if proof_points else 'Available metrics'}
+
+Create a complete video script with:
+
+## 🎬 VIDEO SCRIPT
+
+**HOOK (0-3 seconds):**
+[Scroll-stopping opening]
+
+**PROBLEM (4-15 seconds):**
+[Relate to viewer's pain]
+
+**SOLUTION (Main body):**
+[Introduce LawTrax as the answer]
+[Include timestamps and visual cues]
+
+**PROOF (Social proof section):**
+[Metrics, testimonials, credibility]
+
+**CTA (Final seconds):**
+[Clear call-to-action: {video_cta}]
+
+---
+
+## 📋 PRODUCTION NOTES
+- B-roll suggestions
+- On-screen text
+- Music/sound recommendations
+- Thumbnail concept
+
+---
+
+## 📝 POST COPY
+Caption/description for {video_platform} with hashtags"""
+
+                    result = get_claude_response(script_prompt, st.session_state.api_key)
                     
-                    st.download_button(
-                        label="📥 Download Script",
-                        data=result,
-                        file_name=f"video_script_{video_platform.lower()}_{datetime.now().strftime('%Y%m%d_%H%M')}.txt",
-                        mime="text/plain"
-                    )
-                else:
-                    st.error(result)
+                    if not result.startswith("ERROR"):
+                        st.session_state.generated_content.append({
+                            "type": "Video Script",
+                            "platform": video_platform,
+                            "topic": video_topic,
+                            "persona": video_persona,
+                            "content": result,
+                            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")
+                        })
+                        
+                        st.markdown('<div class="success-banner">✅ Video Script Generated!</div>', unsafe_allow_html=True)
+                        st.markdown("### 📝 Your Video Script")
+                        st.markdown(result)
+                        
+                        st.download_button(
+                            label="📥 Download Script",
+                            data=result,
+                            file_name=f"video_script_{video_platform.lower()}_{datetime.now().strftime('%Y%m%d_%H%M')}.md",
+                            mime="text/markdown"
+                        )
+                    else:
+                        st.error(result)
 
 # Tab 3: SEO Content
 with tab3:
     st.markdown("## 🔍 SEO Content Generator")
-    st.markdown(f"Creating SEO-optimized content for **{company_display_name}**")
+    st.markdown(f"Creating SEO-optimized marketing content for **{company_display_name}**")
+    
+    # SEO Goal
+    st.markdown("### 🎯 SEO Content Goal")
+    seo_goal = st.selectbox(
+        "Content Objective",
+        [
+            "Rank for Product Keywords (Bottom Funnel)",
+            "Rank for Problem Keywords (Middle Funnel)",
+            "Build Topical Authority (Top Funnel)",
+            "Capture Competitor Keywords",
+            "Target Long-Tail Questions",
+            "Create Linkable Asset"
+        ],
+        key="seo_goal"
+    )
     
     col1, col2 = st.columns(2)
     
@@ -1141,16 +1853,17 @@ with tab3:
         seo_content_type = st.selectbox(
             "Content Type",
             [
-                "Blog Post",
-                "Landing Page",
-                "Product Page",
-                "Service Page",
-                "Comparison Article",
-                "How-To Guide",
-                "Listicle",
+                "Blog Post - How To Guide",
+                "Blog Post - Listicle",
+                "Blog Post - Comparison (vs Competitors)",
+                "Blog Post - Ultimate Guide",
+                "Landing Page - Product",
+                "Landing Page - Use Case",
+                "Landing Page - Industry",
+                "Pillar Page - Comprehensive",
                 "Case Study",
-                "Industry Report",
-                "FAQ Page"
+                "FAQ Page",
+                "Glossary/Definition Page"
             ],
             key="seo_content_type"
         )
@@ -1163,39 +1876,63 @@ with tab3:
         
         secondary_keywords = st.text_area(
             "Secondary Keywords",
-            placeholder="immigration software, law firm case management, USCIS forms automation",
-            help="Additional keywords to include (one per line or comma-separated)",
+            placeholder="immigration software for law firms\nUSCIS case tracking\nimmigration attorney software\nbest immigration case management",
+            help="Additional keywords (one per line)",
             height=100
+        )
+        
+        # Persona for SEO
+        seo_persona = st.selectbox(
+            "🎯 Target Persona",
+            list(TARGET_PERSONAS.keys()),
+            key="seo_persona"
         )
     
     with col2:
         target_word_count = st.select_slider(
             "Target Word Count",
             options=[500, 750, 1000, 1500, 2000, 2500, 3000, 4000, 5000],
-            value=1500
+            value=2000
         )
         
         search_intent = st.selectbox(
             "Search Intent",
-            ["Informational", "Commercial", "Transactional", "Navigational"]
+            [
+                "Informational (How to, What is, Guide)",
+                "Commercial (Best, Top, Compare, Review)",
+                "Transactional (Buy, Pricing, Demo, Trial)",
+                "Navigational (Brand-specific)"
+            ]
+        )
+        
+        competitor_keywords = st.multiselect(
+            "Competitor Keywords to Target",
+            [
+                "INSZoom alternative",
+                "Docketwise vs",
+                "LawLogix competitor",
+                "CampLegal alternative",
+                "best immigration software",
+                "immigration case management comparison"
+            ],
+            key="competitor_keywords"
         )
         
         seo_context = st.text_area(
             "Additional Requirements",
-            placeholder="Specific angle, competitor analysis, target audience...",
-            height=100,
+            placeholder="Specific angle, target audience details, internal links to include...",
+            height=80,
             key="seo_context"
         )
     
     # SEO Tips
-    st.markdown("""
+    persona_seo = TARGET_PERSONAS[seo_persona]
+    st.markdown(f"""
     <div class="info-box">
-        <strong>📌 SEO Best Practices:</strong><br>
-        • Include primary keyword in title, first paragraph, and H2s<br>
-        • Use secondary keywords naturally throughout<br>
-        • Aim for 2-3% keyword density<br>
-        • Include internal and external links<br>
-        • Optimize for featured snippets with clear answers
+        <strong>📌 SEO Best Practices for {seo_persona}:</strong><br>
+        • Content Focus: {persona_seo['content_focus']}<br>
+        • Pain Points to Address: {', '.join(persona_seo['pain_points'][:3])}<br>
+        • Tone: {persona_seo['tone']}
     </div>
     """, unsafe_allow_html=True)
     
@@ -1205,31 +1942,124 @@ with tab3:
         elif not primary_keyword:
             st.error("⚠️ Please enter a primary keyword")
         else:
-            with st.spinner("📝 Creating SEO-optimized content..."):
-                prompt = build_seo_content_prompt(
-                    company_info, seo_content_type, primary_keyword,
-                    secondary_keywords, target_word_count, seo_context
-                )
-                result = get_claude_response(prompt, st.session_state.api_key)
+            with st.spinner("📝 Creating SEO-optimized marketing content..."):
+                seo_prompt = f"""You are an expert SEO content strategist specializing in B2B SaaS marketing for legal technology, 
+specifically immigration case management software. You understand search intent, keyword optimization, and conversion-focused content.
+
+COMPANY INFORMATION:
+{company_info}
+
+SEO CONTENT GOAL: {seo_goal}
+CONTENT TYPE: {seo_content_type}
+PRIMARY KEYWORD: {primary_keyword}
+SECONDARY KEYWORDS: {secondary_keywords}
+TARGET WORD COUNT: {target_word_count}
+SEARCH INTENT: {search_intent}
+
+TARGET PERSONA: {seo_persona}
+- Description: {persona_seo['description']}
+- Pain Points: {', '.join(persona_seo['pain_points'])}
+- Motivators: {', '.join(persona_seo['motivators'])}
+- Content Focus: {persona_seo['content_focus']}
+
+COMPETITOR KEYWORDS TO TARGET: {', '.join(competitor_keywords) if competitor_keywords else 'Focus on primary keyword'}
+
+ADDITIONAL CONTEXT: {seo_context if seo_context else 'None'}
+
+TASK:
+Create comprehensive SEO-optimized content that:
+1. Ranks for "{primary_keyword}" and related terms
+2. Speaks directly to {seo_persona}'s needs and pain points
+3. Positions LawTrax as the ideal solution
+4. Includes natural calls-to-action throughout
+5. Is structured for featured snippets where applicable
+6. Builds topical authority in immigration law technology
+
+OUTPUT FORMAT:
+
+## 📊 SEO METADATA
+
+**Meta Title (50-60 chars):**
+[Title optimized for CTR and keywords]
+
+**Meta Description (150-160 chars):**
+[Compelling description with keyword and CTA]
+
+**URL Slug:**
+[SEO-friendly URL]
+
+**Target Featured Snippet:**
+[Optimized answer for position zero]
+
+---
+
+## 📝 FULL CONTENT
+
+[Complete {target_word_count}-word article with:]
+- H1, H2, H3 heading structure
+- Primary keyword in first 100 words
+- Secondary keywords naturally distributed
+- Internal linking opportunities marked as [INTERNAL LINK: anchor text -> page]
+- External linking opportunities marked as [EXTERNAL LINK: anchor text]
+- Image alt text suggestions marked as [IMAGE: description, alt text]
+- CTAs integrated naturally throughout
+
+---
+
+## 📈 SEO ANALYSIS
+
+**Keyword Usage:**
+- Primary keyword density
+- Secondary keyword coverage
+- LSI keywords included
+
+**On-Page Optimization:**
+- Heading structure analysis
+- Internal linking suggestions
+- Schema markup recommendations
+
+**Content Enhancement:**
+- FAQ section for additional keywords
+- Table of contents
+- Key takeaways box
+
+---
+
+## 🎯 CONVERSION OPTIMIZATION
+
+**CTA Placements:**
+[Strategic CTA locations and copy]
+
+**Lead Magnets:**
+[Related downloadable content ideas]
+
+**Next Steps:**
+[Reader journey recommendations]
+
+Make the content authoritative, comprehensive, and designed to rank AND convert for LawTrax."""
+
+                result = get_claude_response(seo_prompt, st.session_state.api_key)
                 
                 if not result.startswith("ERROR"):
                     st.session_state.generated_content.append({
                         "type": "SEO Content",
                         "platform": "Website/Blog",
                         "topic": primary_keyword,
+                        "persona": seo_persona,
+                        "goal": seo_goal,
                         "content": result,
                         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")
                     })
                     
                     st.markdown('<div class="success-banner">✅ SEO Content Generated!</div>', unsafe_allow_html=True)
-                    st.markdown("### 📝 Generated Content")
+                    st.markdown("### 📝 Generated SEO Content")
                     st.markdown(result)
                     
                     st.download_button(
                         label="📥 Download Content",
                         data=result,
-                        file_name=f"seo_{seo_content_type.lower().replace(' ', '_')}_{datetime.now().strftime('%Y%m%d_%H%M')}.txt",
-                        mime="text/plain"
+                        file_name=f"seo_{seo_content_type.lower().replace(' ', '_')}_{datetime.now().strftime('%Y%m%d_%H%M')}.md",
+                        mime="text/markdown"
                     )
                 else:
                     st.error(result)
