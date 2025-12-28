@@ -174,7 +174,11 @@ if 'generated_content' not in st.session_state:
 if 'company_profile' not in st.session_state:
     st.session_state.company_profile = {}
 if 'api_key' not in st.session_state:
-    st.session_state.api_key = ""
+    # Try to get API key from Streamlit secrets first
+    try:
+        st.session_state.api_key = st.secrets.get("CLAUDE_API_KEY", "") or st.secrets.get("ANTHROPIC_API_KEY", "")
+    except Exception:
+        st.session_state.api_key = ""
 
 # Company Knowledge Base (Default: LawTrax)
 LAWTRAX_KNOWLEDGE = """
@@ -511,15 +515,33 @@ with st.sidebar:
     
     # API Key Input
     st.markdown("### 🔑 API Configuration")
-    api_key = st.text_input(
-        "Claude API Key",
-        type="password",
-        value=st.session_state.api_key,
-        help="Enter your Anthropic Claude API key"
-    )
-    if api_key:
-        st.session_state.api_key = api_key
-        st.success("✅ API Key configured")
+    
+    # Check if API key is already loaded from secrets
+    if st.session_state.api_key:
+        st.success("✅ API Key loaded from secrets")
+        # Option to override
+        override_key = st.checkbox("Override API Key", value=False)
+        if override_key:
+            api_key = st.text_input(
+                "Enter New API Key",
+                type="password",
+                help="Enter your Anthropic Claude API key to override"
+            )
+            if api_key:
+                st.session_state.api_key = api_key
+                st.success("✅ API Key updated")
+    else:
+        api_key = st.text_input(
+            "Claude API Key",
+            type="password",
+            value="",
+            help="Enter your Anthropic Claude API key (or add CLAUDE_API_KEY to secrets.toml)"
+        )
+        if api_key:
+            st.session_state.api_key = api_key
+            st.success("✅ API Key configured")
+        else:
+            st.warning("⚠️ Add CLAUDE_API_KEY to secrets.toml or enter below")
     
     st.divider()
     
