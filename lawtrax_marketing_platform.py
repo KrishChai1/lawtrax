@@ -684,10 +684,11 @@ KEY FEATURES: {profile.get('features', 'N/A')}
         company_display_name = "Your Company"
 
 # Main Tabs
-tab0, tab1, tab2, tab3, tab4, tab5 = st.tabs([
+tab0, tab1, tab2, tab2b, tab3, tab4, tab5 = st.tabs([
     "🏠 LawTrax Overview",
     "📱 Social Media Content",
     "🎬 Video Scripts",
+    "🎥 Generate Videos",
     "🔍 SEO Content",
     "📚 Knowledge Base",
     "📋 Content History"
@@ -1826,6 +1827,470 @@ Caption/description for {video_platform} with hashtags"""
                         )
                     else:
                         st.error(result)
+
+# Tab 2b: Generate Videos (AI Video Generation)
+with tab2b:
+    st.markdown("## 🎥 AI Video Generator")
+    st.markdown("Transform your scripts into **actual videos** using AI video generation services")
+    
+    # Video Generation Method Selection
+    st.markdown("### 🎬 Choose Video Generation Method")
+    
+    video_method = st.selectbox(
+        "Select AI Video Platform",
+        [
+            "🎭 HeyGen - AI Avatar Videos (Best for Talking Head/Presenter)",
+            "🎨 Runway Gen-3 - Cinematic AI Videos",
+            "⚡ Pika Labs - Fast Stylized Videos", 
+            "🎬 Synthesia - Corporate Training Videos",
+            "🌟 Luma Dream Machine - Creative Videos",
+            "📱 InVideo AI - Social Media Videos",
+            "🎯 Manual Export - Get production-ready assets"
+        ]
+    )
+    
+    st.markdown("---")
+    
+    # HeyGen Integration (Best for LawTrax - talking head marketing videos)
+    if "HeyGen" in video_method:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                    padding: 1.5rem; border-radius: 15px; color: white; margin-bottom: 1rem;">
+            <h3 style="margin: 0 0 0.5rem 0;">🎭 HeyGen - AI Avatar Videos</h3>
+            <p style="margin: 0; opacity: 0.9;">Perfect for LawTrax marketing: Create professional talking-head videos with AI avatars. 
+            Ideal for product demos, testimonials, and explainer videos.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            heygen_api_key = st.text_input(
+                "HeyGen API Key (Optional)",
+                type="password",
+                help="Get your API key from heygen.com/api"
+            )
+            
+            avatar_type = st.selectbox(
+                "Avatar Type",
+                [
+                    "Professional Male (Business)",
+                    "Professional Female (Business)", 
+                    "Diverse Male Presenter",
+                    "Diverse Female Presenter",
+                    "Custom Avatar (Upload Your Own)",
+                    "Use Stock Avatar"
+                ]
+            )
+            
+            video_voice = st.selectbox(
+                "Voice Style",
+                [
+                    "Professional American Male",
+                    "Professional American Female",
+                    "British Male",
+                    "British Female",
+                    "Friendly Conversational",
+                    "Authoritative Executive"
+                ]
+            )
+        
+        with col2:
+            heygen_video_length = st.selectbox(
+                "Video Length",
+                ["30 seconds", "60 seconds", "90 seconds", "2 minutes", "3 minutes", "5 minutes"]
+            )
+            
+            background_style = st.selectbox(
+                "Background",
+                [
+                    "Modern Office",
+                    "Law Firm Setting",
+                    "Clean White/Minimal",
+                    "Tech Gradient",
+                    "Custom Background",
+                    "Green Screen"
+                ]
+            )
+            
+            include_captions = st.checkbox("Include Auto-Captions", value=True)
+            include_logo = st.checkbox("Include LawTrax Logo", value=True)
+        
+        # Script Input
+        st.markdown("### 📝 Video Script")
+        heygen_script = st.text_area(
+            "Enter or paste your video script",
+            height=200,
+            placeholder="""Hi, I'm here to show you how LawTrax can transform your immigration law practice.
+
+Are you spending hours on paperwork instead of serving clients?
+
+With LawTrax, our clients have seen a 30% increase in revenue by automating case management.
+
+Our platform offers real-time reporting, automated USCIS form generation, and a secure client portal.
+
+Book a free demo today at lawtrax.com.
+
+Let's grow your practice together.""",
+            help="Paste your script from the Video Scripts tab or write a new one"
+        )
+        
+        # Generate Video Button
+        if st.button("🎬 Generate HeyGen Video", type="primary", use_container_width=True):
+            if heygen_script:
+                # Generate HeyGen-ready package
+                with st.spinner("Preparing your video package..."):
+                    heygen_prompt = f"""Create a complete HeyGen video production package for this script.
+
+SCRIPT:
+{heygen_script}
+
+SETTINGS:
+- Avatar: {avatar_type}
+- Voice: {video_voice}
+- Length: {heygen_video_length}
+- Background: {background_style}
+- Captions: {include_captions}
+- Logo: {include_logo}
+
+OUTPUT:
+1. **FORMATTED SCRIPT** (with timing marks and pauses)
+2. **SCENE BREAKDOWN** (scene-by-scene with avatar instructions)
+3. **HEYGEN SETTINGS** (exact settings to use in HeyGen)
+4. **B-ROLL SUGGESTIONS** (scenes to add between talking head)
+5. **THUMBNAIL DESCRIPTION** (for YouTube/social)
+6. **POST-PRODUCTION TIPS** (how to enhance the final video)
+
+Make it optimized for HeyGen's platform."""
+
+                    result = get_claude_response(heygen_prompt, st.session_state.api_key) if st.session_state.api_key else "Please add your Claude API key to generate the video package."
+                    
+                    st.markdown('<div class="success-banner">✅ HeyGen Video Package Ready!</div>', unsafe_allow_html=True)
+                    
+                    # Display results
+                    st.markdown("### 📦 Your HeyGen Video Package")
+                    st.markdown(result)
+                    
+                    # Quick Links
+                    st.markdown("### 🔗 Quick Actions")
+                    link_col1, link_col2, link_col3 = st.columns(3)
+                    with link_col1:
+                        st.link_button("🎭 Open HeyGen", "https://www.heygen.com/", use_container_width=True)
+                    with link_col2:
+                        st.link_button("📚 HeyGen Tutorial", "https://www.heygen.com/article/getting-started", use_container_width=True)
+                    with link_col3:
+                        st.download_button(
+                            "📥 Download Package",
+                            result if result else heygen_script,
+                            file_name=f"heygen_video_package_{datetime.now().strftime('%Y%m%d_%H%M')}.md",
+                            mime="text/markdown",
+                            use_container_width=True
+                        )
+            else:
+                st.error("Please enter a script")
+    
+    # Runway Gen-3 Integration
+    elif "Runway" in video_method:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%); 
+                    padding: 1.5rem; border-radius: 15px; color: #333; margin-bottom: 1rem;">
+            <h3 style="margin: 0 0 0.5rem 0;">🎨 Runway Gen-3 Alpha</h3>
+            <p style="margin: 0;">Create cinematic AI-generated videos from text prompts. Perfect for B-roll, 
+            product visualizations, and creative marketing content.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            runway_prompt = st.text_area(
+                "Video Prompt",
+                height=150,
+                placeholder="A modern law office with sunlight streaming through windows, showing a lawyer confidently using a tablet, professional atmosphere, cinematic lighting, 4K quality",
+                help="Describe the video scene you want to create"
+            )
+            
+            runway_duration = st.selectbox(
+                "Duration",
+                ["4 seconds", "8 seconds", "12 seconds", "16 seconds"]
+            )
+        
+        with col2:
+            runway_style = st.selectbox(
+                "Style",
+                [
+                    "Cinematic / Film",
+                    "Corporate / Professional",
+                    "Modern / Tech",
+                    "Documentary",
+                    "Commercial / Ad",
+                    "Abstract / Artistic"
+                ]
+            )
+            
+            runway_motion = st.select_slider(
+                "Camera Motion",
+                options=["Static", "Subtle", "Moderate", "Dynamic", "Dramatic"]
+            )
+        
+        if st.button("🎨 Generate Runway Prompt Package", type="primary", use_container_width=True):
+            with st.spinner("Creating optimized Runway prompts..."):
+                runway_gen_prompt = f"""Create an optimized Runway Gen-3 video generation package.
+
+USER REQUEST:
+- Scene: {runway_prompt}
+- Duration: {runway_duration}
+- Style: {runway_style}
+- Motion: {runway_motion}
+
+COMPANY CONTEXT: LawTrax Immigration Software Marketing
+
+OUTPUT:
+1. **OPTIMIZED PROMPT** (Runway-formatted, detailed prompt)
+2. **NEGATIVE PROMPT** (what to avoid)
+3. **CAMERA SETTINGS** (movement, angle recommendations)
+4. **3 ALTERNATIVE PROMPTS** (variations for A/B testing)
+5. **SCENE SEQUENCE** (if creating multiple clips for editing)
+6. **POST-PRODUCTION** (how to use these clips in final video)
+7. **SOUNDTRACK SUGGESTIONS** (royalty-free music style)
+
+Make prompts specific, detailed, and optimized for Runway Gen-3's capabilities."""
+
+                result = get_claude_response(runway_gen_prompt, st.session_state.api_key) if st.session_state.api_key else "Please add your Claude API key."
+                
+                st.markdown('<div class="success-banner">✅ Runway Package Ready!</div>', unsafe_allow_html=True)
+                st.markdown(result)
+                
+                st.markdown("### 🔗 Quick Actions")
+                link_col1, link_col2 = st.columns(2)
+                with link_col1:
+                    st.link_button("🎨 Open Runway", "https://app.runwayml.com/", use_container_width=True)
+                with link_col2:
+                    st.download_button(
+                        "📥 Download Prompts",
+                        result if result else runway_prompt,
+                        file_name=f"runway_prompts_{datetime.now().strftime('%Y%m%d_%H%M')}.md",
+                        mime="text/markdown",
+                        use_container_width=True
+                    )
+    
+    # Pika Labs Integration
+    elif "Pika" in video_method:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%); 
+                    padding: 1.5rem; border-radius: 15px; color: #333; margin-bottom: 1rem;">
+            <h3 style="margin: 0 0 0.5rem 0;">⚡ Pika Labs</h3>
+            <p style="margin: 0;">Fast, stylized AI video generation. Great for social media content, 
+            quick iterations, and creative experimentation.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        pika_prompt = st.text_area(
+            "Pika Video Prompt",
+            height=150,
+            placeholder="Immigration attorney reviewing documents on tablet, modern office, warm lighting, professional"
+        )
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            pika_aspect = st.selectbox("Aspect Ratio", ["16:9", "9:16", "1:1", "4:5"])
+        with col2:
+            pika_motion = st.slider("Motion Level", 1, 5, 3)
+        with col3:
+            pika_guidance = st.slider("Prompt Guidance", 1, 20, 12)
+        
+        if st.button("⚡ Generate Pika Package", type="primary", use_container_width=True):
+            with st.spinner("Creating Pika prompts..."):
+                pika_gen_prompt = f"""Create an optimized Pika Labs video generation package.
+
+PROMPT: {pika_prompt}
+SETTINGS: Aspect {pika_aspect}, Motion {pika_motion}, Guidance {pika_guidance}
+CONTEXT: LawTrax Immigration Software Marketing
+
+OUTPUT:
+1. **OPTIMIZED PIKA PROMPT** (formatted for Pika's style)
+2. **PARAMETERS** (exact /create command)
+3. **PIKAFFECTS** (effects to apply post-generation)
+4. **3 VARIATIONS** (for testing)
+5. **BEST USE CASES** (where to use this video)"""
+
+                result = get_claude_response(pika_gen_prompt, st.session_state.api_key) if st.session_state.api_key else "Please add your Claude API key."
+                
+                st.markdown('<div class="success-banner">✅ Pika Package Ready!</div>', unsafe_allow_html=True)
+                st.markdown(result)
+                
+                st.link_button("⚡ Open Pika Labs", "https://pika.art/", use_container_width=True)
+    
+    # Synthesia Integration
+    elif "Synthesia" in video_method:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #4B0082 0%, #9370DB 100%); 
+                    padding: 1.5rem; border-radius: 15px; color: white; margin-bottom: 1rem;">
+            <h3 style="margin: 0 0 0.5rem 0;">🎬 Synthesia</h3>
+            <p style="margin: 0;">Enterprise-grade AI video platform. Perfect for training videos, 
+            corporate communications, and professional presentations.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        synthesia_script = st.text_area(
+            "Synthesia Script",
+            height=200,
+            placeholder="Enter your professional script here..."
+        )
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            synthesia_avatar = st.selectbox("Avatar", ["Professional Male", "Professional Female", "Diverse Options"])
+            synthesia_lang = st.selectbox("Language", ["English (US)", "English (UK)", "Spanish", "French", "German"])
+        with col2:
+            synthesia_template = st.selectbox("Template", ["Corporate", "Training", "Marketing", "Minimal"])
+            synthesia_brand = st.checkbox("Include LawTrax Branding", value=True)
+        
+        if st.button("🎬 Generate Synthesia Package", type="primary", use_container_width=True):
+            st.markdown('<div class="success-banner">✅ Ready for Synthesia!</div>', unsafe_allow_html=True)
+            st.markdown(f"""
+### Your Synthesia Setup
+
+**Script:** Ready to paste
+**Avatar:** {synthesia_avatar}
+**Language:** {synthesia_lang}
+**Template:** {synthesia_template}
+
+### Next Steps:
+1. Go to [Synthesia](https://www.synthesia.io/)
+2. Create new video
+3. Select avatar: {synthesia_avatar}
+4. Paste your script
+5. Add branding elements
+6. Generate and download
+            """)
+            st.link_button("🎬 Open Synthesia", "https://www.synthesia.io/", use_container_width=True)
+    
+    # Manual Export Option
+    elif "Manual" in video_method:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%); 
+                    padding: 1.5rem; border-radius: 15px; color: white; margin-bottom: 1rem;">
+            <h3 style="margin: 0 0 0.5rem 0;">🎯 Production-Ready Export</h3>
+            <p style="margin: 0;">Get all assets needed to produce your video with any tool or 
+            send to a video production team.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        export_script = st.text_area(
+            "Your Video Script",
+            height=200,
+            placeholder="Paste your script here to generate a complete production package..."
+        )
+        
+        export_format = st.selectbox(
+            "Export Format",
+            [
+                "Complete Production Brief (PDF-ready)",
+                "Storyboard Document",
+                "Shot List + Script",
+                "Social Media Package (All Platforms)",
+                "Agency Brief"
+            ]
+        )
+        
+        if st.button("📦 Generate Production Package", type="primary", use_container_width=True):
+            if export_script:
+                with st.spinner("Creating production package..."):
+                    export_prompt = f"""Create a complete video production package for this script.
+
+SCRIPT:
+{export_script}
+
+FORMAT: {export_format}
+BRAND: LawTrax Immigration Software
+
+OUTPUT:
+1. **PRODUCTION BRIEF** (overview, objectives, target audience)
+2. **COMPLETE STORYBOARD** (scene-by-scene with descriptions)
+3. **SHOT LIST** (numbered shots with framing, duration, notes)
+4. **VISUAL REFERENCES** (describe reference images/videos)
+5. **AUDIO GUIDE** (music style, voiceover notes, sound effects)
+6. **BRANDING GUIDELINES** (colors, logo placement, fonts)
+7. **TECHNICAL SPECS** (resolution, format, duration)
+8. **PLATFORM VERSIONS** (cuts for different social platforms)
+9. **TALENT NOTES** (if using actors/presenters)
+10. **TIMELINE** (production schedule estimate)
+
+Make this comprehensive enough to hand to any video production team or freelancer."""
+
+                    result = get_claude_response(export_prompt, st.session_state.api_key) if st.session_state.api_key else "Please add your Claude API key."
+                    
+                    st.markdown('<div class="success-banner">✅ Production Package Complete!</div>', unsafe_allow_html=True)
+                    st.markdown(result)
+                    
+                    st.download_button(
+                        "📥 Download Production Package",
+                        result,
+                        file_name=f"video_production_package_{datetime.now().strftime('%Y%m%d_%H%M')}.md",
+                        mime="text/markdown",
+                        use_container_width=True
+                    )
+            else:
+                st.error("Please enter a script")
+    
+    # Other platforms - show quick links
+    else:
+        st.markdown("### 🔗 Quick Access to Video Platforms")
+        
+        platform_col1, platform_col2, platform_col3 = st.columns(3)
+        
+        with platform_col1:
+            st.link_button("🎭 HeyGen", "https://www.heygen.com/", use_container_width=True)
+            st.link_button("🎨 Runway", "https://app.runwayml.com/", use_container_width=True)
+        
+        with platform_col2:
+            st.link_button("⚡ Pika Labs", "https://pika.art/", use_container_width=True)
+            st.link_button("🎬 Synthesia", "https://www.synthesia.io/", use_container_width=True)
+        
+        with platform_col3:
+            st.link_button("🌟 Luma AI", "https://lumalabs.ai/", use_container_width=True)
+            st.link_button("📱 InVideo", "https://invideo.io/", use_container_width=True)
+    
+    # Tips Section
+    st.markdown("---")
+    st.markdown("### 💡 AI Video Generation Tips for LawTrax Marketing")
+    
+    tips_col1, tips_col2 = st.columns(2)
+    
+    with tips_col1:
+        st.markdown("""
+        **Best Platforms by Use Case:**
+        
+        🎭 **HeyGen** - Talking head videos, demos, testimonials
+        - Best for: Product explainers, founder messages
+        - Cost: ~$2.40 per 10-second video
+        
+        🎨 **Runway** - Cinematic B-roll, visualizations
+        - Best for: Background footage, transitions
+        - Cost: ~$0.50 per 5-second clip
+        
+        ⚡ **Pika** - Quick social content
+        - Best for: TikTok, Reels, fast iterations
+        - Cost: Free tier available
+        """)
+    
+    with tips_col2:
+        st.markdown("""
+        **LawTrax Video Ideas:**
+        
+        📹 **Product Demo** (HeyGen + Screen Recording)
+        - AI avatar introduces, screen shows platform
+        
+        🎬 **Client Testimonial** (HeyGen)
+        - Professional avatar shares success story
+        
+        🎥 **Explainer Video** (Synthesia)
+        - How LawTrax solves immigration firm pain points
+        
+        📱 **Social Clips** (Pika/Runway)
+        - Quick tips, stats, feature highlights
+        """)
 
 # Tab 3: SEO Content
 with tab3:
