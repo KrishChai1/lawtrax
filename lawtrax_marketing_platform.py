@@ -618,43 +618,58 @@ with st.sidebar:
     
     st.divider()
     
-    # Feature Controls - Token Management
-    st.markdown("### ⚙️ Feature Controls")
-    st.caption("Disable features to save API tokens")
+    # Feature Controls - Hidden (controlled by admin)
+    # Video features disabled by default to save tokens
+    # To enable, admin can uncomment the checkbox section below
     
-    enable_video_scripts = st.checkbox(
-        "🎬 Enable Video Scripts",
-        value=False,
-        help="Enable/disable video script generation (uses tokens)"
-    )
+    # Set default values (video disabled, others enabled)
+    if 'enable_video_scripts' not in st.session_state:
+        st.session_state.enable_video_scripts = False
+    if 'enable_video_generation' not in st.session_state:
+        st.session_state.enable_video_generation = False
+    if 'enable_seo_content' not in st.session_state:
+        st.session_state.enable_seo_content = True
+    if 'enable_social_media' not in st.session_state:
+        st.session_state.enable_social_media = True
     
-    enable_video_generation = st.checkbox(
-        "🎥 Enable Video Generation",
-        value=False,
-        help="Enable/disable AI video generation packages (uses tokens)"
-    )
-    
-    enable_seo_content = st.checkbox(
-        "🔍 Enable SEO Content",
-        value=True,
-        help="Enable/disable SEO content generation"
-    )
-    
-    enable_social_media = st.checkbox(
-        "📱 Enable Social Media",
-        value=True,
-        help="Enable/disable social media content generation"
-    )
-    
-    # Store in session state
-    st.session_state.enable_video_scripts = enable_video_scripts
-    st.session_state.enable_video_generation = enable_video_generation
-    st.session_state.enable_seo_content = enable_seo_content
-    st.session_state.enable_social_media = enable_social_media
-    
-    if not enable_video_scripts and not enable_video_generation:
-        st.info("💰 Video features disabled - saving tokens!")
-    
+    # ADMIN SECTION - Uncomment below to show feature controls
+    # st.markdown("### ⚙️ Feature Controls")
+    # st.caption("Disable features to save API tokens")
+    # 
+    # enable_video_scripts = st.checkbox(
+    #     "🎬 Enable Video Scripts",
+    #     value=False,
+    #     help="Enable/disable video script generation (uses tokens)"
+    # )
+    # 
+    # enable_video_generation = st.checkbox(
+    #     "🎥 Enable Video Generation",
+    #     value=False,
+    #     help="Enable/disable AI video generation packages (uses tokens)"
+    # )
+    # 
+    # enable_seo_content = st.checkbox(
+    #     "🔍 Enable SEO Content",
+    #     value=True,
+    #     help="Enable/disable SEO content generation"
+    # )
+    # 
+    # enable_social_media = st.checkbox(
+    #     "📱 Enable Social Media",
+    #     value=True,
+    #     help="Enable/disable social media content generation"
+    # )
+    # 
+    # st.session_state.enable_video_scripts = enable_video_scripts
+    # st.session_state.enable_video_generation = enable_video_generation
+    # st.session_state.enable_seo_content = enable_seo_content
+    # st.session_state.enable_social_media = enable_social_media
+    # 
+    # if not enable_video_scripts and not enable_video_generation:
+    #     st.info("💰 Video features disabled - saving tokens!")
+    # 
+    # st.divider()
+
     st.divider()
     
     # Company Configuration
