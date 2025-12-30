@@ -618,6 +618,45 @@ with st.sidebar:
     
     st.divider()
     
+    # Feature Controls - Token Management
+    st.markdown("### ⚙️ Feature Controls")
+    st.caption("Disable features to save API tokens")
+    
+    enable_video_scripts = st.checkbox(
+        "🎬 Enable Video Scripts",
+        value=False,
+        help="Enable/disable video script generation (uses tokens)"
+    )
+    
+    enable_video_generation = st.checkbox(
+        "🎥 Enable Video Generation",
+        value=False,
+        help="Enable/disable AI video generation packages (uses tokens)"
+    )
+    
+    enable_seo_content = st.checkbox(
+        "🔍 Enable SEO Content",
+        value=True,
+        help="Enable/disable SEO content generation"
+    )
+    
+    enable_social_media = st.checkbox(
+        "📱 Enable Social Media",
+        value=True,
+        help="Enable/disable social media content generation"
+    )
+    
+    # Store in session state
+    st.session_state.enable_video_scripts = enable_video_scripts
+    st.session_state.enable_video_generation = enable_video_generation
+    st.session_state.enable_seo_content = enable_seo_content
+    st.session_state.enable_social_media = enable_social_media
+    
+    if not enable_video_scripts and not enable_video_generation:
+        st.info("💰 Video features disabled - saving tokens!")
+    
+    st.divider()
+    
     # Company Configuration
     st.markdown("### 🏢 Company Profile")
     use_default = st.checkbox("Use LawTrax (Default)", value=True)
@@ -1197,7 +1236,13 @@ with tab1:
         </div>
         """, unsafe_allow_html=True)
     
-    if st.button("✨ Generate Marketing Content", type="primary", use_container_width=True):
+    # Check if social media is enabled
+    social_media_enabled = st.session_state.get('enable_social_media', True)
+    
+    if not social_media_enabled:
+        st.warning("⚠️ **Social Media Content Generation is DISABLED**. Enable in sidebar → '📱 Enable Social Media'")
+    
+    if st.button("✨ Generate Marketing Content", type="primary", use_container_width=True, disabled=not social_media_enabled):
         if not st.session_state.api_key:
             st.error("⚠️ Please enter your Claude API key in the sidebar")
         elif not topic:
@@ -1415,6 +1460,10 @@ with tab2:
     st.markdown("## 🎬 Video Marketing Generator")
     st.markdown(f"Creating **video marketing content** for **{company_display_name}** to drive leads and conversions")
     
+    # Check if feature is enabled - show banner if disabled
+    if not st.session_state.get('enable_video_scripts', False):
+        st.warning("⚠️ **Video Script Generation is DISABLED** to save API tokens. Enable in sidebar → '🎬 Enable Video Scripts'")
+    
     # Video Marketing Goal
     st.markdown("### 🎯 Video Marketing Objective")
     video_goal = st.selectbox(
@@ -1586,11 +1635,28 @@ with tab2:
     st.markdown("---")
     gen_col1, gen_col2 = st.columns(2)
     
+    # Check if video scripts feature is enabled
+    video_scripts_enabled = st.session_state.get('enable_video_scripts', False)
+    
     with gen_col1:
-        generate_script = st.button("📝 Generate Video Script", type="primary", use_container_width=True)
+        generate_script = st.button(
+            "📝 Generate Video Script", 
+            type="primary", 
+            use_container_width=True,
+            disabled=not video_scripts_enabled
+        )
     
     with gen_col2:
-        generate_full_video = st.button("🎬 Generate Full Video Package", type="secondary", use_container_width=True)
+        generate_full_video = st.button(
+            "🎬 Generate Full Video Package", 
+            type="secondary", 
+            use_container_width=True,
+            disabled=not video_scripts_enabled
+        )
+    
+    # Show warning if disabled
+    if not video_scripts_enabled:
+        st.warning("⚠️ **Video Script Generation is DISABLED** to save API tokens. Enable in sidebar → '🎬 Enable Video Scripts'")
     
     if generate_script or generate_full_video:
         if not st.session_state.api_key:
@@ -1833,6 +1899,12 @@ with tab2b:
     st.markdown("## 🎥 AI Video Generator")
     st.markdown("Transform your scripts into **actual videos** using AI video generation services")
     
+    # Check if feature is enabled
+    video_gen_enabled = st.session_state.get('enable_video_generation', False)
+    
+    if not video_gen_enabled:
+        st.warning("⚠️ **Video Generation is DISABLED** to save API tokens. Enable in sidebar → '🎥 Enable Video Generation'")
+    
     # Video Generation Method Selection
     st.markdown("### 🎬 Choose Video Generation Method")
     
@@ -1936,7 +2008,7 @@ Let's grow your practice together.""",
         )
         
         # Generate Video Button
-        if st.button("🎬 Generate HeyGen Video", type="primary", use_container_width=True):
+        if st.button("🎬 Generate HeyGen Video", type="primary", use_container_width=True, disabled=not video_gen_enabled):
             if heygen_script:
                 # Generate HeyGen-ready package
                 with st.spinner("Preparing your video package..."):
@@ -2033,7 +2105,7 @@ Make it optimized for HeyGen's platform."""
                 options=["Static", "Subtle", "Moderate", "Dynamic", "Dramatic"]
             )
         
-        if st.button("🎨 Generate Runway Prompt Package", type="primary", use_container_width=True):
+        if st.button("🎨 Generate Runway Prompt Package", type="primary", use_container_width=True, disabled=not video_gen_enabled):
             with st.spinner("Creating optimized Runway prompts..."):
                 runway_gen_prompt = f"""Create an optimized Runway Gen-3 video generation package.
 
@@ -2099,7 +2171,7 @@ Make prompts specific, detailed, and optimized for Runway Gen-3's capabilities."
         with col3:
             pika_guidance = st.slider("Prompt Guidance", 1, 20, 12)
         
-        if st.button("⚡ Generate Pika Package", type="primary", use_container_width=True):
+        if st.button("⚡ Generate Pika Package", type="primary", use_container_width=True, disabled=not video_gen_enabled):
             with st.spinner("Creating Pika prompts..."):
                 pika_gen_prompt = f"""Create an optimized Pika Labs video generation package.
 
@@ -2146,7 +2218,7 @@ OUTPUT:
             synthesia_template = st.selectbox("Template", ["Corporate", "Training", "Marketing", "Minimal"])
             synthesia_brand = st.checkbox("Include LawTrax Branding", value=True)
         
-        if st.button("🎬 Generate Synthesia Package", type="primary", use_container_width=True):
+        if st.button("🎬 Generate Synthesia Package", type="primary", use_container_width=True, disabled=not video_gen_enabled):
             st.markdown('<div class="success-banner">✅ Ready for Synthesia!</div>', unsafe_allow_html=True)
             st.markdown(f"""
 ### Your Synthesia Setup
@@ -2194,7 +2266,7 @@ OUTPUT:
             ]
         )
         
-        if st.button("📦 Generate Production Package", type="primary", use_container_width=True):
+        if st.button("📦 Generate Production Package", type="primary", use_container_width=True, disabled=not video_gen_enabled):
             if export_script:
                 with st.spinner("Creating production package..."):
                     export_prompt = f"""Create a complete video production package for this script.
@@ -2401,7 +2473,13 @@ with tab3:
     </div>
     """, unsafe_allow_html=True)
     
-    if st.button("🔍 Generate SEO Content", type="primary", use_container_width=True):
+    # Check if SEO is enabled
+    seo_enabled = st.session_state.get('enable_seo_content', True)
+    
+    if not seo_enabled:
+        st.warning("⚠️ **SEO Content Generation is DISABLED**. Enable in sidebar → '🔍 Enable SEO Content'")
+    
+    if st.button("🔍 Generate SEO Content", type="primary", use_container_width=True, disabled=not seo_enabled):
         if not st.session_state.api_key:
             st.error("⚠️ Please enter your Claude API key in the sidebar")
         elif not primary_keyword:
